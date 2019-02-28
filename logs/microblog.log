@@ -1,3 +1,46 @@
 2019-02-27 14:23:25,227 INFO: Microblog startup [in /Users/mujigirl/Projects/microBlog/app/__init__.py:45]
 2019-02-27 14:23:32,068 INFO: Microblog startup [in /Users/mujigirl/Projects/microBlog/app/__init__.py:45]
 2019-02-27 14:59:57,074 INFO: Microblog startup [in /Users/mujigirl/Projects/microBlog/app/__init__.py:45]
+2019-02-27 15:09:57,631 INFO: Microblog startup [in /Users/mujigirl/Projects/microBlog/app/__init__.py:45]
+2019-02-28 11:37:41,129 INFO: Microblog startup [in /Users/mujigirl/Projects/microBlog/app/__init__.py:45]
+2019-02-28 11:37:49,934 INFO: Microblog startup [in /Users/mujigirl/Projects/microBlog/app/__init__.py:45]
+2019-02-28 11:50:35,612 INFO: Microblog startup [in /Users/mujigirl/Projects/microBlog/app/__init__.py:45]
+2019-02-28 11:50:39,128 ERROR: Exception on /explore [GET] [in /Users/mujigirl/Projects/microBlog/venv/lib/python3.7/site-packages/flask/app.py:1761]
+Traceback (most recent call last):
+  File "/Users/mujigirl/Projects/microBlog/venv/lib/python3.7/site-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mujigirl/Projects/microBlog/venv/lib/python3.7/site-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mujigirl/Projects/microBlog/venv/lib/python3.7/site-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/mujigirl/Projects/microBlog/venv/lib/python3.7/site-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/Users/mujigirl/Projects/microBlog/venv/lib/python3.7/site-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mujigirl/Projects/microBlog/venv/lib/python3.7/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/mujigirl/Projects/microBlog/venv/lib/python3.7/site-packages/flask_login/utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "/Users/mujigirl/Projects/microBlog/app/routes.py", line 137, in explore
+    posts = Post.query.order_by(Post.timestamp.desc()).pagenate(
+AttributeError: 'BaseQuery' object has no attribute 'pagenate'
+2019-02-28 11:50:41,617 ERROR: Exception on /index [GET] [in /Users/mujigirl/Projects/microBlog/venv/lib/python3.7/site-packages/flask/app.py:1761]
+Traceback (most recent call last):
+  File "/Users/mujigirl/Projects/microBlog/venv/lib/python3.7/site-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mujigirl/Projects/microBlog/venv/lib/python3.7/site-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mujigirl/Projects/microBlog/venv/lib/python3.7/site-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/mujigirl/Projects/microBlog/venv/lib/python3.7/site-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/Users/mujigirl/Projects/microBlog/venv/lib/python3.7/site-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mujigirl/Projects/microBlog/venv/lib/python3.7/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/mujigirl/Projects/microBlog/venv/lib/python3.7/site-packages/flask_login/utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "/Users/mujigirl/Projects/microBlog/app/routes.py", line 29, in index
+    posts = current_user.followed_posts().pagenate(
+AttributeError: 'BaseQuery' object has no attribute 'pagenate'
+2019-02-28 11:51:28,245 INFO: Microblog startup [in /Users/mujigirl/Projects/microBlog/app/__init__.py:45]
