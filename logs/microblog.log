@@ -44,3 +44,4 @@ Traceback (most recent call last):
     posts = current_user.followed_posts().pagenate(
 AttributeError: 'BaseQuery' object has no attribute 'pagenate'
 2019-02-28 11:51:28,245 INFO: Microblog startup [in /Users/mujigirl/Projects/microBlog/app/__init__.py:45]
+2019-03-01 11:53:56,012 INFO: Microblog startup [in /Users/mujigirl/Projects/microBlog/app/__init__.py:46]
