@@ -45,3 +45,9 @@ Traceback (most recent call last):
 AttributeError: 'BaseQuery' object has no attribute 'pagenate'
 2019-02-28 11:51:28,245 INFO: Microblog startup [in /Users/mujigirl/Projects/microBlog/app/__init__.py:45]
 2019-03-01 11:53:56,012 INFO: Microblog startup [in /Users/mujigirl/Projects/microBlog/app/__init__.py:46]
+2019-03-01 17:19:27,331 INFO: Microblog startup [in /Users/mujigirl/Projects/microBlog/app/__init__.py:51]
+2019-03-01 17:20:21,561 INFO: Microblog startup [in /Users/mujigirl/Projects/microBlog/app/__init__.py:51]
+2019-03-01 17:22:11,591 INFO: Microblog startup [in /Users/mujigirl/Projects/microBlog/app/__init__.py:51]
+2019-03-01 17:22:26,933 INFO: Microblog startup [in /Users/mujigirl/Projects/microBlog/app/__init__.py:51]
+2019-03-01 17:24:43,490 INFO: Microblog startup [in /Users/mujigirl/Projects/microBlog/app/__init__.py:51]
+2019-03-01 18:04:37,233 INFO: Microblog startup [in /Users/mujigirl/Projects/microBlog/app/__init__.py:51]
