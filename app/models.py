@@ -6,7 +6,6 @@ from app import login
 from hashlib import md5
 from time import time
 import jwt
-from app import app
 
 followers = db.Table('followers', 
 		db.Column('follower_id', db.Integer, db.ForeignKey('user.id')),

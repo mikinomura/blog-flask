@@ -1,6 +1,5 @@
 from flask import render_template, flash, redirect, url_for
-from app import app
-from app.forms import LoginForm
+from app.auth.forms import LoginForm
 from flask_login import current_user, login_user
 from app.models import User
 from flask_login import logout_user
@@ -16,8 +15,8 @@ from app.models import Post
 from app.forms import ResetPasswordRequestForm
 from app.email import send_password_reset_email
 
-@app.route('/', methods=['GET', 'POST'])
-@app.route('/index', methods=['GET', 'POST'])
+@bp.route('/', methods=['GET', 'POST'])
+@bp.route('/index', methods=['GET', 'POST'])
 @login_required
 def index():
 	form = PostForm()
@@ -36,7 +35,7 @@ def index():
 		if posts.has_prev else None
 	return render_template('index.html', title='Home', form=form, posts=posts.items, next_url=next_url, prev_url=prev_url)
 
-@app.route('/login', methods=['GET', 'POST'])
+@bp.route('/login', methods=['GET', 'POST'])
 def login():
 	if current_user.is_authenticated:
 		return redirect(url_for(index))
@@ -53,12 +52,12 @@ def login():
 		return redirect(next_page)
 	return render_template('login.html', title='Sign In', form=form)
 
-@app.route('/logout')
+@bp.route('/logout')
 def logout():
 	logout_user()
 	return redirect(url_for('index'))
 
-@app.route('/resister', methods=['GET', 'POST'])
+@bp.route('/resister', methods=['GET', 'POST'])
 def resister():
 	if current_user.is_authenticated:
 		return redirect(url_for('index'))
@@ -72,7 +71,7 @@ def resister():
 		return redirect(url_for('login'))
 	return render_template('resister.html', title='Resister', form=form)
 
-@app.route('/user/<username>')
+@bp.route('/user/<username>')
 @login_required
 def user(username):
 	user = User.query.filter_by(username=username).first_or_404()
@@ -85,13 +84,13 @@ def user(username):
 		if posts.has_prev else None
 	return render_template('user.html', user=user, posts=posts.items, next_url=next_url, prev_url=prev_url)
 
-@app.before_request
+@bp.before_request
 def before_request():
 	if current_user.is_authenticated:
 		current_user.last_seen = datetime.utcnow()
 		db.session.commit()
 
-@app.route('/edit_profile', methods=['GET', 'POST'])
+@bp.route('/edit_profile', methods=['GET', 'POST'])
 @login_required
 def edit_profile():
 	form = EditProfileForm(current_user.username)
@@ -106,7 +105,7 @@ def edit_profile():
 		form.about_me.data = current_user.about_me
 	return render_template('edit_profile.html', title='Edit Profile', form=form)
 
-@app.route('/follow/<username>')
+@bp.route('/follow/<username>')
 @login_required
 def follow(username):
 	user = User.query.filter_by(username=username).first()
@@ -121,7 +120,7 @@ def follow(username):
 	flash('You are following {}!'.format(username))
 	return redirect(url_for('user', username=username))
 
-@app.route('/unfollow/<username>')
+@bp.route('/unfollow/<username>')
 @login_required
 def unfollow(username):
 	user = User.query.filter_by(username=username).first()
@@ -135,7 +134,7 @@ def unfollow(username):
 	flash('You are unfollowing {}'.format(username))
 	return redirect(url_for('user', username=username))
 
-@app.route('/explore')
+@bp.route('/explore')
 @login_required
 def explore():
 	page = request.args.get('page', 1, type=int)
@@ -147,7 +146,7 @@ def explore():
 		if posts.has_prev else None
 	return render_template('index.html', title='Explore', posts=posts.items, next_url=next_url, prev_url=prev_url)
 
-@app.route('/reset_password_request', methods=['GET', 'POST'])
+@bp.route('/reset_password_request', methods=['GET', 'POST'])
 def reset_password_request():
 	if current_user.is_authenticated:
 		return redirect(url_for('index'))
@@ -160,7 +159,7 @@ def reset_password_request():
 		return redirect(url_for('login'))
 	return render_template('reset_password_request.html', title='Reset Password', form=form)
 
-@app.route('/reset_password/<token>', methods=['GET', 'POST'])
+@bp.route('/reset_password/<token>', methods=['GET', 'POST'])
 def reset_password(token):
 	if current_user.is_authenticated:
 		return redirect(url_for('index'))
